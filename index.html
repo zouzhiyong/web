@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="assets/css/default.css"/>
+
+</head>
+
+<body>
+    <div id="header">
+        <h2>test</h2>
+    </div>
+    <div id="app">
+        <el-button v-on:click="visible = true" type="danger">按钮</el-button>
+        <el-dialog v-model="visible" title="Hello world">
+            <p>欢迎使用 Element</p>
+        </el-dialog>
+
+
+        <el-radio-group v-model="radio" v-on:change="checked">
+            <el-radio :label="1">备选项1</el-radio>
+            <el-radio :label="2">备选项2</el-radio>
+            <el-radio :label="3">备选项3</el-radio>
+        </el-radio-group>
+
+        <el-select v-model="value" placeholder="请选择" v-on:change="selected">
+            <el-option v-for="item in options" ref="ff" :key="item.value+'111111'" :label="item.label" :value="item.value">
+            </el-option>
+        </el-select>
+    </div>
+    <script type="text/javascript" src="assets/js/default.min.js"></script>
+    <script>
+    var vm = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                visible: false, radio: 2,
+                options: [{
+                    value: '选项1',
+                    label: '黄金糕'
+                }, {
+                    value: '选项2',
+                    label: '双皮奶'
+                }, {
+                    value: '选项3',
+                    label: '蚵仔煎'
+                }, {
+                    value: '选项4',
+                    label: '龙须面'
+                }, {
+                    value: '选项5',
+                    label: '北京烤鸭'
+                }],
+                value: '选项2'
+            }
+        },
+        mounted: function () {
+            console.log(this.$refs.ff[0]);
+        },
+        methods: {
+            selected: function (value) {
+                let obj = {};
+                obj = this.options.find(item => item.value === value);
+                //alert(obj.label);
+                this.$message(obj.label);
+            },
+            checked: function (value) {
+
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
