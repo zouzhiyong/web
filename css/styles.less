@@ -1,0 +1,15 @@
+@base: #ff0000;
+
+@darktcolor: @base;
+@simplecolor:hsl(hue(@base), 43%, 96%);
+@bordcolor:darken(hsl(hue(@base), 45%, 96%),10%);
+@bgcolor:hsl(hue(@base)+20, 45%, 97%);
+
+.bgdarktcolor{background-color: @darktcolor}
+.fontbgdarktcolor{color: @darktcolor}
+
+.bgsimplecolor{background-color: @simplecolor;}
+
+.bordcolor{border-color: @bordcolor}
+
+.bgcolor{background-color: @bgcolor}

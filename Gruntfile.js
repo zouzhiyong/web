@@ -8,14 +8,15 @@ module.exports = function(grunt) {
              stripBanners: true
          },
          dist: {
-             src: [
+             src: [                 
                  "js/jquery.min.js",
                  "js/bootstrap.min.js",
                  "js/bootstrap-table.js",                 
                  "js/bootstrap-table-zh-CN.min.js",
                  "js/bootstrap-table-export.js",
                  "js/vue.min.js",
-                 "js/index.js"
+                 "js/index.js",
+                 "js/zzy_*.js"
              ],
              dest: "js/default.js"
          }
@@ -39,18 +40,24 @@ module.exports = function(grunt) {
                      "css/bootstrap.min.css",
                      "css/bootstrap-table.css",                     
                      "css/icon.css",
-                     "css/index.css"
+                     "css/index.css",
+                     "css/style.css"
                  ]
              }
          }
-     }
+     },
+     watch: {
+            files: ['js/*.js', 'css/*.css'],
+            tasks: ['concat', 'uglify', 'cssmin']
+        }
   });
 
   //载入concat和uglify插件，分别对于合并和压缩
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   //注册任务
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin','watch']);
 }
