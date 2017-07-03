@@ -1,15 +1,19 @@
-@base: #ff0000;
+@base: #538bfa;
 
 @darktcolor: @base;
 @simplecolor:hsl(hue(@base), 43%, 96%);
 @bordcolor:darken(hsl(hue(@base), 45%, 96%),10%);
 @bgcolor:hsl(hue(@base)+20, 45%, 97%);
+@darkbgcolor:darken(hsl(hue(@base), 45%, 96%),90%);
+@darkbgcolor-hover:darken(hsl(hue(@base), 45%, 96%),70%);
+@whitefontcolor:hsl(hue(@base)+20, 100%, 100%);
 
-.bgdarktcolor{background-color: @darktcolor}
-.fontbgdarktcolor{color: @darktcolor}
+header{background-color: @darktcolor}
+.zz-sidebar{background-color: @darkbgcolor}
+.zz-sidebar .zz-collapse{background-color: lighten(@darkbgcolor,10%)}
+.zz-sidebar .zz-menu .zz-menu-item:hover {border-left-color: @darkbgcolor-hover }
+.zz-sidebar .zz-menu .zz-menu-item a:hover{background-color:@darkbgcolor-hover;}
+.zz-sidebar a{color: @whitefontcolor}
+.zz-sidebar .zz-menu .zz-menu-item{border-left-color: @darkbgcolor }
+.zz-sidebar .zz-menu .zz-menu-item.active{border-left-color: @darktcolor}
 
-.bgsimplecolor{background-color: @simplecolor;}
-
-.bordcolor{border-color: @bordcolor}
-
-.bgcolor{background-color: @bgcolor}

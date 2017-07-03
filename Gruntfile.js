@@ -11,12 +11,13 @@ module.exports = function(grunt) {
              src: [                 
                  "js/jquery.min.js",
                  "js/bootstrap.min.js",
-                 "js/bootstrap-table.js",                 
-                 "js/bootstrap-table-zh-CN.min.js",
-                 "js/bootstrap-table-export.js",
+                 //"js/bootstrap-table.js",                 
+                 //"js/bootstrap-table-zh-CN.min.js",
+                 //"js/bootstrap-table-export.js",
                  "js/vue.min.js",
                  "js/index.js",
-                 "js/zzy_*.js"
+                 "js/frame.js",
+                 //"js/zzy_*.js"
              ],
              dest: "js/default.js"
          }
@@ -40,6 +41,8 @@ module.exports = function(grunt) {
                      "css/bootstrap.min.css",
                      "css/bootstrap-table.css",                     
                      "css/icon.css",
+                     "css/iconfont.css",
+                     "css/font-awesome.css",
                      "css/index.css",
                      "css/style.css"
                  ]
