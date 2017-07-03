@@ -1,24 +1,40 @@
 $(function () {
-    $(".zz-menu>.zz-menu-item").on({
+    $(".zz-menu-ul>.zz-menu-item").on({
         click: function () {
-            $(this).toggleClass("active");
+            var el_new = $(this);
+            var el_new_second = el_new.children(".zz-menu-second-level");
 
-            var el = $(".zz-menu-second-level", this),
-                curHeight = el.height(),
-                autoHeight = el.css('height', 'auto').height();
+            var el_old = $(".zz-menu-item.active").not(el_new);
+            var el_old_second = el_old.children(".zz-menu-second-level");
 
-            if ($(this).hasClass("active")) {
-                el.height(curHeight).animate({ height: autoHeight }, 200, function () {
-                    el.addClass("in");
-                });
+            el_old_second.animate({ height: 'toggle', opacity: 'toggle' }, 200);
+            el_old.removeClass("active");
+            el_old_second.attr("expanded", false);
+            el_old.find(".arrow").removeClass("fa-angle-down");
+
+            el_new_second.animate({ height: 'toggle', opacity: 'toggle' }, 200);
+            el_new.toggleClass("active");
+            el_new.find(".arrow").toggleClass("fa-angle-down");
+
+            if (el_new.hasClass('active')) {
+                el_new_second.attr("expanded", true);
 
             } else {
-                el.animate({ height: "0px" }, 200, function () {
-                    el.removeClass("in");
-                });
+                el_new_second.attr("expanded", false);
 
             }
 
+
         }
     });
+
+    $(".J_menuItem").on({
+        click: function () {
+            var index=$(this).attr("data-index");
+            var iframe=$('<iframe class="J_iframe" name="iframe'+index+'" src="'+$(this).attr("href")+'" data-id="'+$(this).attr("href")+'" seamless="" style="display: block;" height="100%" frameborder="0" width="100%"></iframe>');
+            $(".content").append(iframe);
+            return false;
+        }
+    })
+
 });
