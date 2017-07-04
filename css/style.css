@@ -1,22 +1,6 @@
-body {
-    font-size: 12px;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-}
-html,
-body {
-    height: 100%;
-}
-.zz-wrapper {
+.wrapper {
     min-width: 800px;
     height: 100%;
-}
-a:focus,
-a:hover {
-    outline: 0 none;
-    text-decoration: none;
-}
-li>a i {
-    margin-right: 10px;
 }
 header {
     height: 60px;
@@ -28,16 +12,16 @@ header:after {
     height: 100%;
     vertical-align: middle;
 }
-header .header-logo {
+header .header_logo {
     display: inline-block;
     vertical-align: middle;
 }
-.zz-header-operations {
+.header_operations {
     float: right;
     padding-right: 30px;
     height: 100%;
 }
-.zz-header-operations li {
+.header_operations li {
     display: inline-block;
     vertical-align: middle;
     padding: 0;
@@ -45,67 +29,68 @@ header .header-logo {
     line-height: 60px;
     cursor: pointer;
 }
-.zz-header-operations li>a {
+.header_operations li>a {
     display: block;
     padding: 0 15px;
 }
-.zz-header-operations li>a .img-circle {
+.header_operations li>a .img_circle {
     height: 38px;
     border-radius: 5px;
 }
-.zz-sidebar {
+.side_bar {
     width: 180px;
     position: fixed;
     height: 100%
 }
-.zz-sidebar .zz-collapse {
+.side_bar .top_nav {
     text-align: center;
     padding: 10px;
 }
-.zz-sidebar .zz-menu {
+.side_bar .menu {
     overflow: hidden;
     overflow-y: auto;
     width: auto;
     height: calc(100% - 60px - 40px);
 }
-.zz-sidebar .zz-menu-ul {
+.side_bar ul {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
 }
-.zz-sidebar .zz-menu-ul .zz-menu-item {
+.side_bar>.menu>ul>li {
     position: relative;
     display: block;
     border-left-style: solid;
     border-left-width: 4px;
 }
-.zz-sidebar .zz-menu-ul:not(.zz-menu-second-level)>.zz-menu-item {
+.side_bar>.menu>ul>li>a.active {
+    margin-left: -4px;
+    padding-left: 24px;
+}
+.side_bar>.menu>ul>li {
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
-.zz-sidebar .zz-menu-ul>.zz-menu-item>a {
+.side_bar>.menu>ul>li>ul>li a {
+    padding: 7px 15px 7px 52px;
+}
+.side_bar ul>li>a {
     position: relative;
     display: block;
     padding: 10px 20px;
     text-decoration: none;
 }
-.zz-sidebar .zz-menu-ul>.zz-menu-item>a i {
+.side_bar ul>li>a i {
     font-size: 14px;
     margin-right: 10px;
 }
-.zz-sidebar .zz-menu-ul>.zz-menu-item>a .arrow {
+.side_bar ul>li>a .arrow {
     float: right;
     margin-top: 2px;
 }
-.zz-sidebar .zz-menu-ul>.zz-menu-item>.zz-menu-second-level>.zz-menu-item a {
-    padding: 7px 15px 7px 52px;
-}
-.zz-sidebar .zz-menu-ul>.zz-menu-item>a .arrow {
+.side_bar ul>li>a .arrow {
     float: right;
     margin-top: 2px;
-}
-.zz-sidebar .zz-menu-ul>.zz-menu-item>.zz-menu-second-level>.zz-menu-item a {
-    padding: 7px 15px 7px 52px;
 }
 .J_mainContent {
     margin-left: 180px;

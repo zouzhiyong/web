@@ -1,26 +1,26 @@
 $(function() {
     //一级菜单点击事件
-    $(".zz-menu-ul>.zz-menu-item").click(function() {
-        var el_new = $(this);
-        var el_new_second = el_new.children(".zz-menu-second-level");
+    $(".side_bar>.menu>ul>li").click(function() {
+        var liMenuNew = $(this); //第一级菜单项
+        var ulMenuSubNew = liMenuNew.children("ul"); //第二级菜单项
 
-        var el_old = $(".zz-menu-item.active").not(el_new);
-        var el_old_second = el_old.children(".zz-menu-second-level");
+        var liMenuOld = $(".side_bar>.menu>ul>li.active").not(liMenuNew);
+        var ulMenuSubOld = liMenuOld.children("ul");
 
-        el_old_second.animate({ height: 'toggle', opacity: 'toggle' }, 200);
-        el_old.removeClass("active");
-        el_old_second.attr("expanded", false);
-        el_old.find(".arrow").removeClass("fa-angle-down");
+        ulMenuSubOld.animate({ height: 'toggle', opacity: 'toggle' }, 200);
+        liMenuOld.removeClass("active");
+        ulMenuSubOld.attr("expanded", false);
+        liMenuOld.find(".arrow").removeClass("fa-angle-down");
 
-        el_new_second.animate({ height: 'toggle', opacity: 'toggle' }, 200);
-        el_new.toggleClass("active");
-        el_new.find(".arrow").toggleClass("fa-angle-down");
+        ulMenuSubNew.animate({ height: 'toggle', opacity: 'toggle' }, 200);
+        liMenuNew.toggleClass("active");
+        liMenuNew.find(".arrow").toggleClass("fa-angle-down");
 
-        if (el_new.hasClass('active')) {
-            el_new_second.attr("expanded", true);
+        if (liMenuNew.hasClass('active')) {
+            ulMenuSubNew.attr("expanded", true);
 
         } else {
-            el_new_second.attr("expanded", false);
+            ulMenuSubNew.attr("expanded", false);
 
         }
 
