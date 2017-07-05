@@ -28,7 +28,7 @@ $(function() {
     });
 
     //二级菜单点击事件 
-    $('.J_menuItem').on('click', menuItem);
+    $('.menu_item').on('click', menuItem);
 
 });
 
@@ -45,14 +45,14 @@ function menuItem() {
     var flag = true;
 
     //增加激活样式
-    $(".J_menuItem.active").removeClass("active");
+    $(".menu_item.active").removeClass("active");
     $(this).addClass("active");
 
     //页面存在时重新加载
-    $('.J_mainContent .J_iframe').each(function() {
+    $('.main_iframe .main_iframe_page').each(function() {
         if ($(this).data('id').toString() == dataIndex) {
 
-            $(this).show().siblings('.J_iframe').hide();
+            $(this).show().siblings('.main_iframe_page').hide();
             //重新加载
             $(this).attr('src', dataUrl).load(function() {});
             flag = false;
@@ -61,8 +61,8 @@ function menuItem() {
 
     // 添加选项卡对应的iframe
     if (flag) {
-        var new_iframe = '<iframe class="J_iframe" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataIndex + '" seamless></iframe>';
-        $('.J_mainContent').find('iframe.J_iframe').hide().parents('.J_mainContent').append(new_iframe);
+        var new_iframe = '<iframe class="main_iframe_page" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataIndex + '" seamless></iframe>';
+        $('.main_iframe').find('iframe.main_iframe_page').hide().parents('.main_iframe').append(new_iframe);
     }
 
 

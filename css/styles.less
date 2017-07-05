@@ -1,27 +1,27 @@
-@color-base:#538bfa;
-
+@color-base: #538bfa;
 @color1: darken(hsl(hue(@color-base), 45%, 96%), 90%);
 @color2: darken(hsl(hue(@color-base), 45%, 96%), 85%);
 @color3: darken(hsl(hue(@color-base), 45%, 96%), 75%);
-@color4: darken(@color-base, 3%);
-@color5: darken(hsl(hue(@color-base), 45%, 96%), 10%);
-@color6: hsl(hue(@color-base), 43%, 96%);
-@color7: hsl(hue(@color-base)+20, 100%, 100%);
-
-
+@color4: darken(@color-base, 10%);
+@color5: lighten(hsl(hue(@color-base), 10%, 20%), 40%);
+@color6: darken(hsl(hue(@color-base), 45%, 96%), 10%);
+@color7: hsl(hue(@color-base), 43%, 96%);
+@color8: hsl(hue(@color-base)+20, 100%, 100%);
 header {
     background-color: @color-base;
 }
 
-.header_operations li,.header_operations li>a{
-    color: @color7;
+.header_operations li,
+.header_operations li>a {
+    color: @color8;
 }
 
-.header_operations li>a:hover{
-    background-color:  @color4
+.header_operations li>a:hover {
+    background-color: @color4
 }
+
 .zz-footer {
-    border-top-color: @color5
+    border-top-color: @color6
 }
 
 .side_bar {
@@ -34,12 +34,12 @@ header {
 
 .side_bar>.menu>ul>li {
     border-left-color: @color1;
-    border-bottom-color:@color2;
+    border-bottom-color: @color2;
 }
 
 .side_bar>.menu>ul>li.active {
     border-left-color: @color-base;
-    border-bottom-color:@color2;
+    border-bottom-color: @color2;
 }
 
 .side_bar ul li:hover {
@@ -51,14 +51,12 @@ header {
     background-color: @color2;
 }
 
-.side_bar .J_menuItem.active {
+.side_bar .menu_item.active {
     background-color: @color3;
 }
 
-
-
 .side_bar a {
-    color: @color7
+    color: @color8
 }
 
 .zz-sidebar ul li.active {
@@ -67,14 +65,52 @@ header {
 
 .scroll::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px @color1;
-    background-color: @color5;
+    background-color: @color6;
 }
 
 .scroll::-webkit-scrollbar {
     width: 6px;
-    background-color: @color5;
+    background-color: @color6;
 }
 
 .scroll::-webkit-scrollbar-thumb {
     background-color: @color1;
+}
+
+.main_tabs {
+    border-bottom-color: @color-base;
+    color: @color5
+}
+
+.main_tabs button {
+    background: @color8 none repeat scroll 0 0;
+}
+
+.main_tabs button:hover {
+    background: @color7 none repeat scroll 0 0;
+}
+
+.main_tabs .roll-left {
+    border-right-color: @color6
+}
+
+.main_tabs .roll-right {
+    border-left-color: @color7
+}
+
+.page-tabs a.active {
+    background: @color4 none repeat scroll 0 0;
+    color: @color8;
+}
+
+.main_tabs .roll-nav,
+.page-tabs-list {
+    color: @color5;
+}
+
+.page-tabs a:not(.active):hover,
+.main_tabs .roll-nav:hover {
+    background: @color7 none repeat scroll 0 0;
+    color: darken(@color5, 20%);
+    cursor: pointer;
 }

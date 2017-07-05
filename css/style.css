@@ -1,6 +1,7 @@
 .wrapper {
     min-width: 800px;
     height: 100%;
+    overflow-x: hidden;
 }
 header {
     height: 60px;
@@ -92,11 +93,77 @@ header .header_logo {
     float: right;
     margin-top: 2px;
 }
-.J_mainContent {
+.main {
     margin-left: 180px;
-    height: calc(100% - 96px);
+    height: calc(100% - 133px);
 }
-.zz-footer {
+.main_iframe {
+    height: 100%;
+}
+.main_iframe_page {
+    height: 100%;
+}
+.main_tabs {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    height: 37px;
+    line-height: 35px;
+    position: relative;
+}
+.main_tabs button {
+    border: 0 none;
+    height: 35px;
+    outline: medium none;
+    width: 35px;
+}
+.main_tabs .roll-nav,
+.page-tabs-list {
+    height: 35px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 40px;
+    z-index: 2;
+}
+.main_tabs .roll-left {
+    border-right-style: solid;
+    border-right-width: 1px;
+    left: 0;
+}
+nav.page-tabs {
+    height: 35px;
+    margin-left: 35px;
+    overflow: hidden;
+    width: 100000px;
+    position: absolute;
+}
+.page-tabs a {
+    display: block;
+    float: left;
+    padding: 0 15px;
+}
+.main_tabs .roll-right {
+    border-left-style: solid;
+    border-left-width: 1px;
+    right: 0;
+}
+.roll-right.btn-group {
+    padding: 0;
+    right: 60px;
+    width: 80px;
+}
+.roll-right.btn-group button {
+    width: 80px;
+}
+.roll-right.J_tabRight {
+    right: 140px;
+}
+.roll-right.J_tabExit {
+    height: 35px;
+    outline: medium none;
+    width: 60px;
+}
+.footer {
     border-top-style: solid;
     border-top-width: 1px;
     height: 36px;
