@@ -72,17 +72,26 @@ header .header_logo {
     list-style: none;
 }
 
-.mini-navbar .side_bar .active ul.collapse {
-    position: absolute;
-    left: 61px;
-    width: 130px;
+.mini-navbar .side_bar>.menu>ul>li.active>ul {
+    display: none !important;
 }
 
-.mini-navbar .side_bar .active ul.collapse a {
+.mini-navbar .side_bar>.menu>ul>li:hover ul.collapse {
+    position: fixed;
+    left: 60px;
+    top: 0;
+    width: 130px;
+    border-radius: 2px;
+    display: block !important;
+    border-style: solid;
+    border-width: 8px;
+}
+
+.mini-navbar .side_bar>.menu>ul>li:hover ul.collapse a {
     padding-left: 10px;
 }
 
-.side_bar>.menu>ul>li {
+body:not(.mini-navbar) .side_bar>.menu>ul>li {
     position: relative;
     display: block;
     border-left-style: solid;
@@ -127,6 +136,7 @@ header .header_logo {
 .side_bar ul>li>a i {
     font-size: 14px;
     margin-right: 10px;
+    pointer-events: none;
 }
 
 .side_bar ul>li>a .arrow {

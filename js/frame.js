@@ -5,6 +5,9 @@ $(function() {
     //一级菜单点击事件
     $(".side_bar>.menu>ul>li").on('click', baseFun.menuItem);
 
+    //一级菜单折叠时移动事件
+    $(".side_bar>.menu>ul>li").hover(baseFun.menuItemHover);
+
     //二级菜单点击事件 
     $('.menu_item').on('click', baseFun.menuItemSub);
 
@@ -17,17 +20,18 @@ var baseFun = {
         $(".side_bar .menu").animate({ opacity: '0' }, 0);
         if ($("body").hasClass("mini-navbar")) {
             $(".side_bar").animate({ "width": "180px" }, 200);
+            $(".main").animate({ marginLeft: "180px" }, 200);
         } else {
             $(".side_bar").animate({ "width": "60px" }, 200);
+            $(".main").animate({ marginLeft: "60px" }, 200);
         }
-        $(".side_bar .menu").animate({ opacity: '1' }, 300);
+
+        $(".side_bar .menu").animate({ opacity: '1' }, 500);
         $("body").toggleClass("mini-navbar");
     },
     //一级菜单点击事件
     menuItem: function() {
-        if ($("body").hasClass("mini-navbar")) {
-            return;
-        }
+        var speed = 200;
         var liMenuNew = $(this); //第一级菜单项
         var ulMenuSubNew = liMenuNew.children("ul"); //第二级菜单项
 
@@ -37,7 +41,7 @@ var baseFun = {
         ulMenuSubOld.animate({
             height: 'toggle',
             opacity: 'toggle'
-        }, 200);
+        }, speed);
         liMenuOld.removeClass("active");
         ulMenuSubOld.attr("expanded", false);
         liMenuOld.find(".arrow").removeClass("fa-angle-down");
@@ -45,7 +49,7 @@ var baseFun = {
         ulMenuSubNew.animate({
             height: 'toggle',
             opacity: 'toggle'
-        }, 200);
+        }, speed);
         liMenuNew.toggleClass("active");
         liMenuNew.find(".arrow").toggleClass("fa-angle-down");
 
@@ -56,6 +60,14 @@ var baseFun = {
             ulMenuSubNew.attr("expanded", false);
 
         }
+    },
+    //折叠时移动事件
+    menuItemHover: function() {
+        if (!$("body").hasClass("mini-navbar")) {
+            return;
+        }
+
+        $("ul", this).css("top", $(this).offset().top + "px");
     },
     //判断浏览器是否支持html5本地存储    
     localStorageSupport: function() {
