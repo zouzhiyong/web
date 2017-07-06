@@ -223,6 +223,10 @@ nav.page-tabs {
     width: 80px;
 }
 
+.roll-right.btn-group .dropdown-menu {
+    font-size: 12px;
+}
+
 .roll-right.J_tabRight {
     right: 140px;
 }
