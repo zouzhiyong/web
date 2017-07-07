@@ -154,11 +154,11 @@ body:not(.mini-navbar) .side_bar>.menu>ul>li {
     height: calc(100% - 133px);
 }
 
-.main_iframe {
+.J_mainContent {
     height: 100%;
 }
 
-.main_iframe_page {
+.J_iframe {
     height: 100%;
 }
 
@@ -205,6 +205,8 @@ nav.page-tabs {
     display: block;
     float: left;
     padding: 0 15px;
+    border-right-style: solid;
+    border-right-width: 1px;
 }
 
 .main_tabs .roll-right {
