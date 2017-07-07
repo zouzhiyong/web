@@ -198,7 +198,6 @@ nav.page-tabs {
     margin-left: 35px;
     overflow: hidden;
     width: 100000px;
-    position: absolute;
 }
 
 .page-tabs a {
@@ -207,6 +206,14 @@ nav.page-tabs {
     padding: 0 15px;
     border-right-style: solid;
     border-right-width: 1px;
+}
+
+nav.page-tabs .page-tabs-content {
+    float: left;
+}
+
+.J_menuTab {
+    transition: all 0.3s ease-out 0s;
 }
 
 .main_tabs .roll-right {
