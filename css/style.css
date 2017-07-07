@@ -152,6 +152,7 @@ body:not(.mini-navbar) .side_bar>.menu>ul>li {
 .main {
     margin-left: 180px;
     height: calc(100% - 133px);
+    position: inherit;
 }
 
 .J_mainContent {
@@ -198,6 +199,7 @@ nav.page-tabs {
     margin-left: 35px;
     overflow: hidden;
     width: 100000px;
+    position: absolute;
 }
 
 .page-tabs a {
@@ -244,6 +246,22 @@ nav.page-tabs .page-tabs-content {
     height: 35px;
     outline: medium none;
     width: 60px;
+}
+
+.modal-content {
+    border-radius: 3px;
+}
+
+.modal-title {
+    font-size: 14px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
 }
 
 .footer {
