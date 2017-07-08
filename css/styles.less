@@ -15,11 +15,11 @@ header {
     color: @color8;
 }
 
-.header_operations li>a:hover {
-    background-color: @color4;
+.header_operations>li>a:hover {
+    background-color:darken( @color-base,5%);
 }
 
-.zz-footer {
+.footer {
     border-top-color: @color6;
 }
 
@@ -138,10 +138,9 @@ input.input_color{
 }
 
 /*全局定义*/
-.btn:active:focus, .btn:focus,.btn:active{
-    outline: 0;
-    box-shadow: none;
-    background-image: none;
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color:@color4;
+    border-color:@color4;
 }
 
 

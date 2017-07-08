@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/iconfont.css?ver=20170703" />
     <link rel="stylesheet" href="css/font-awesome.css?ver=20170703" />
     <link rel="stylesheet" href="css/base.css?ver=20170703" />
+    <link rel="stylesheet" href="css/global.css?ver=20170703" />
     <link rel="stylesheet" href="css/style.css?ver=20170703" />
     <link rel="stylesheet/less" type="text/css" href="css/styles.less?ver=20170703" />
     <script type="text/javascript " src="js/less.min.js?ver=20170703 "></script>
@@ -25,44 +26,69 @@
     <div class="wrapper">
         <header>
             <img src=" " class="header_logo">
-
-            <ul class="header_operations">
-                <li>
-                    <a href="javascript:;" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-tasks"></i> 切换主题
-                    </a>
-                    <!-- Modal -->
-                    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel"><label>切换主题色</label></h4>
-                                </div>
-                                <div class="modal-body">
-                                    <label>主题颜色</label>
-                                    <div>
-
-                                        <input type="color" autocomplete="off" class="input_color">
+            <nav class="nav navbar-top-links navbar-right">
+                <ul class="header_operations">
+                    <li>
+                        <a href="javascript:;" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-tasks"></i> 切换主题
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel"><label>切换主题色</label></h4>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-custom-primary" data-dismiss="modal">切换</button>
-                                    <button type="button" class="btn btn-custom">重置</button>
+                                    <div class="modal-body">
+                                        <label>主题颜色</label>
+                                        <div>
+
+                                            <input type="color" autocomplete="off" class="input_color">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-custom-primary" data-dismiss="modal">切换</button>
+                                        <button type="button" class="btn btn-custom">重置</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <img class="img_circle" alt="" src="https://web.unidms.com/web//UploadImage/142/62269bb63e734feab7deac9bc17c97ae.png" onerror="this.src='https://web.unidms.com/web/'+'Content/_Layout/img/user.png';">
-                        <span class="username username-hide-on-mobile">系统管理员 </span>
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                </li>
+                    </li>
+                    <li class="dropdown dropdown-user">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false">
+                            <img class="img_circle" alt="" src="https://web.unidms.com/web//UploadImage/142/62269bb63e734feab7deac9bc17c97ae.png" onerror="this.src='https://web.unidms.com/web/'+'Content/_Layout/img/user.png';">
+                            <span class="username username-hide-on-mobile">系统管理员 </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a class="MyselfMsg-link" href="javascript:;">
+                                    <i class="icon iconfont icon-code"></i> 个人资料
+                                </a>
+                            </li>
+                            <li>
+                                <a class="Mainset-link" href="javascript:;">
+                                    <i class="icon iconfont icon-homeset"></i> 主页设置
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="UpdatePwd-link" href="javascript:;">
+                                    <i class="icon iconfont icon-lock"></i> 修改密码
+                                </a>
+                            </li>
+                            <li>
+                                <a class="logoff-link" href="javascript:;">
+                                    <i class="icon iconfont icon-exit"></i> 安全退出
+                                    <input id="loginurl" value="Login" type="hidden">
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-            </ul>
+                </ul>
+            </nav>
         </header>
         <div class="side_bar">
             <div class="top_nav">
@@ -164,7 +190,7 @@
             <div class="J_mainContent">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="http://www.baidu.com" frameborder="0" data-id="0"></iframe>
             </div>
-            <div class="footer ">
+            <div class="footer">
                 <div class="pull-right ">
                     &copy; 2016 XXX.com 版权所有 ICP证：湘ICP备XXXXXXX
                 </div>
