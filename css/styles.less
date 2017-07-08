@@ -11,8 +11,7 @@ header {
     background-color: @color-base;
 }
 
-.header_operations li,
-.header_operations li>a {
+.header_operations>li>a {
     color: @color8;
 }
 
@@ -133,3 +132,96 @@ header {
 .modal-title{
     color: @color3
 }
+
+input.input_color{
+    background-color: @color8;
+}
+
+/*全局定义*/
+.btn:active:focus, .btn:focus,.btn:active{
+    outline: 0;
+    box-shadow: none;
+    background-image: none;
+}
+
+
+.btn:active:focus,.btn:active:hover{
+    background-color:@color8;
+    color: darken(@color4,10%);
+    border-color: darken(@color4,10%);
+}
+
+.btn:active{    
+    color: @color4;
+    background-color:@color8;
+    border-color: @color4;
+}
+
+.btn:hover{
+    color: @color4;
+    background-color:@color8;
+    border-color: @color4;
+}
+
+.btn:focus{
+    color: lighten(@color4,10%);
+    background-color:@color8;
+    border-color: @color4;
+}
+
+.btn{
+    background-color: @color8;
+    border-color: lighten(@color4,10%);
+    color:lighten(@color4,10%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-custom-primary:active:focus,.btn-custom-primary:active:hover{
+    background-color:darken(@color4,10%);
+    color: @color8;
+    border-color: darken(@color4,10%);
+}
+
+.btn-custom-primary:active{    
+    color: @color8;
+    background-color:@color4;
+    border-color: @color4;
+}
+
+.btn-custom-primary:hover{
+    color: @color8;
+    background-color:@color4;
+    border-color: @color4;
+}
+
+.btn-custom-primary:focus{
+    color: @color8;
+    background-color:@color4;
+    border-color: @color4;
+}
+
+.btn-custom-primary{
+    background-color:lighten(@color4,10%);
+    color: @color8;
+}
+

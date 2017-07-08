@@ -32,19 +32,23 @@
                         <i class="fa fa-tasks"></i> 切换主题
                     </a>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">切换主题色</h4>
+                                    <h4 class="modal-title" id="myModalLabel"><label>切换主题色</label></h4>
                                 </div>
                                 <div class="modal-body">
+                                    <label>主题颜色</label>
+                                    <div>
 
+                                        <input type="color" autocomplete="off" class="input_color">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-custom-primary" data-dismiss="modal">切换</button>
+                                    <button type="button" class="btn btn-custom">重置</button>
                                 </div>
                             </div>
                         </div>
