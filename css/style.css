@@ -25,6 +25,7 @@ header .header_logo {
     float: right;
     padding-right: 30px;
     height: 100%;
+    margin-bottom: auto;
 }
 
 .header_operations>li {
@@ -151,12 +152,12 @@ body:not(.mini-navbar) .side_bar>.menu>ul>li {
 
 .main {
     margin-left: 180px;
-    height: calc(100% - 133px);
+    height: calc(100% - 60px);
     position: inherit;
 }
 
 .J_mainContent {
-    height: 100%;
+    height: calc(100% - 73px);
 }
 
 .J_iframe {
