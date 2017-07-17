@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/module.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-row>
+            <el-col :span="24">
+                <el-form :inline="true" :model="formInline" class="demo-form-inline query-form">
+                    <el-form-item label="供货单位">
+                        <el-input v-model="formInline.dw" placeholder="供货单位" icon="more" :on-icon-click="handleIconClick">
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item label="经手人">
+                        <el-input v-model="formInline.jsr" placeholder="经手人" icon="more" :on-icon-click="handleIconClick">
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item label="部门">
+                        <el-input v-model="formInline.bm" placeholder="部门" icon="more" :on-icon-click="handleIconClick">
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item label="收货仓库">
+                        <el-select v-model="formInline.ck" placeholder="收货仓库">
+                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.min.js"></script>
+<script src="../js/index.js"></script>
+<script>
+    var data = {
+        data() {
+            return {
+                formInline: {
+                    dw: '',
+                    jsr: '',
+                    bm: '',
+                    ck: ''
+                },
+                options: [{
+                    value: '001',
+                    label: '仓库1'
+                }, {
+                    value: '002',
+                    label: '仓库2'
+                }, {
+                    value: '003',
+                    label: '仓库3'
+                }]
+            }
+        },
+        methods: {
+            onSubmit() {
+                alert(JSON.stringify(this.formInline));
+            },
+            handleIconClick(ev) {
+                console.log(ev);
+            }
+        }
+    }
+    var v = Vue.extend(data);
+    new v().$mount('#app');
+</script>
