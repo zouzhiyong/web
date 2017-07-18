@@ -38,31 +38,40 @@
                         <el-button type="primary" @click="onSubmit">查询</el-button>
                     </el-form-item>
                 </el-form>
-                <el-table :data="tableData" border stripe class="table">
-                    <el-table-column type="index" width="50">
+                <el-table :data="tableData" border stripe class="table" :height="height">
+                    <el-table-column type="selection" width="55" header-align="center" align="center">
                     </el-table-column>
-                    <el-table-column label="日期" width="180">
+                    <el-table-column type="index" width="100" header-align="center" align="center">
+                    </el-table-column>
+                    <el-table-column label="日期" width="180" header-align="center" sortable prop="date">
                         <template scope="scope">
 						<el-icon name="time"></el-icon>
 						<span style="margin-left: 10px">{{ scope.row.date }}</span>
 						</template>
                     </el-table-column>
-                    <el-table-column label="姓名" width="180">
+                    <el-table-column label="日期" width="180" header-align="center" sortable prop="date">
                         <template scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <p>姓名: {{ scope.row.name }}</p>
-          <p>住址: {{ scope.row.address }}</p>
-          <div slot="reference" class="name-wrapper">
-            <el-tag>{{ scope.row.name }}</el-tag>
-          </div>
-        </el-popover>
-      </template>
+						<el-input v-model="scope.row.date" placeholder="请输入内容"></el-input>
+						</template>
                     </el-table-column>
-                    <el-table-column label="操作">
+                    <el-table-column prop="date" label="日期" width="180" header-align="center">
+                    </el-table-column>
+                    <el-table-column label="姓名" width="180" header-align="center">
                         <template scope="scope">
-        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-      </template>
+                            <el-popover trigger="hover" placement="top">
+                                <p>姓名: {{ scope.row.name }}</p>
+                                <p>住址: {{ scope.row.address }}</p>
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tag>{{ scope.row.name }}</el-tag>
+                                </div>
+                            </el-popover>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作" header-align="center" align="center">
+                        <template scope="scope">
+                            <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                            <el-button size="small" type="danger" @click="handleDelete(scope.$index, tableData)">删除</el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
             </el-col>
@@ -77,6 +86,7 @@
     var data = {
         data() {
             return {
+                height: document.body.offsetHeight - 150,
                 formInline: {
                     dw: '',
                     jsr: '',
@@ -109,6 +119,106 @@
                     date: '2016-05-03',
                     name: '王小虎',
                     address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
                 }]
             }
         },
@@ -118,6 +228,14 @@
             },
             handleIconClick(ev) {
                 console.log(ev);
+            },
+            handleEdit(index, row) {
+                row.name = "修改后的名称";
+                alert("当前行是第" + (index + 1) + "行," + row.name);
+                //console.log(index, row);
+            },
+            handleDelete(index, row) {
+                row.splice(index, 1);
             }
         }
     }
