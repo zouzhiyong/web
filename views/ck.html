@@ -36,38 +36,48 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="getData">获取数据</el-button>
                     </el-form-item>
                 </el-form>
-                <el-table :data="tableData" border stripe class="table" :height="height">
+                <el-table :data="tableData" border class="table" :height="height">
                     <el-table-column type="selection" width="55" header-align="center" align="center">
                     </el-table-column>
-                    <el-table-column type="index" width="100" header-align="center" align="center">
+                    <el-table-column type="index" label="序号" width="100" header-align="center" align="center">
                     </el-table-column>
-                    <el-table-column label="日期" width="180" header-align="center" sortable prop="date">
+                    <el-table-column prop="MaterID" label="商品编号&名称" header-align="center">
                         <template scope="scope">
-						<el-icon name="time"></el-icon>
-						<span style="margin-left: 10px">{{ scope.row.date }}</span>
-						</template>
-                    </el-table-column>
-                    <el-table-column label="日期" width="180" header-align="center" sortable prop="date">
-                        <template scope="scope">
-						<el-input v-model="scope.row.date" placeholder="请输入内容"></el-input>
-						</template>
-                    </el-table-column>
-                    <el-table-column prop="date" label="日期" width="180" header-align="center">
-                    </el-table-column>
-                    <el-table-column label="姓名" width="180" header-align="center">
-                        <template scope="scope">
-                            <el-popover trigger="hover" placement="top">
-                                <p>姓名: {{ scope.row.name }}</p>
-                                <p>住址: {{ scope.row.address }}</p>
-                                <div slot="reference" class="name-wrapper">
-                                    <el-tag>{{ scope.row.name }}</el-tag>
-                                </div>
-                            </el-popover>
+                        <el-input v-model="scope.row.MaterName" placeholder="商品编号&名称"></el-input>
                         </template>
                     </el-table-column>
-                    <el-table-column label="操作" header-align="center" align="center">
+                    <el-table-column prop="UnitType" label="单位" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-select v-model="scope.row.UnitType" placeholder="请选择">
+                            <el-option v-for="item in scope.row.MaterUnitList" :key="item.id" :label="item.text" :value="item.id">
+                            </el-option>
+                        </el-select>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="ConFactor" label="出入库数量" width="150" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.ConFactor" placeholder="出入库数量"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="PurchPrice" label="单价" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.PurchPrice" placeholder="单价"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="WhsAmount" label="金额" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.WhsAmount" placeholder="金额"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="Remark" label="备注" width="400" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.Remark" placeholder="备注"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作" header-align="center" align="center" width="300">
                         <template scope="scope">
                             <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                             <el-button size="small" type="danger" @click="handleDelete(scope.$index, tableData)">删除</el-button>
@@ -104,121 +114,69 @@
                     label: '仓库3'
                 }],
                 tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
+                    "MaterName": "百威460ML棕瓶塑箱空瓶",
+                    "MaterUnitName": "罐",
+                    "MaterUnitList": [{
+                        "id": 1,
+                        "text": "箱"
+                    }, {
+                        "id": 2,
+                        "text": "罐"
+                    }],
+                    "ConFactor": 1.000,
+                    "PurchPrice": 0.500000,
+                    "WhsAmount": 0.500000,
+                    "MaterID": 247,
+                    "UnitType": 2,
+                    "Remark": null
                 }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
+                    "MaterName": "百威460ML棕瓶塑箱空瓶",
+                    "MaterUnitName": "罐",
+                    "MaterUnitList": [{
+                        "id": 1,
+                        "text": "箱"
+                    }, {
+                        "id": 2,
+                        "text": "罐"
+                    }],
+                    "ConFactor": 1.000,
+                    "PurchPrice": 0.500000,
+                    "WhsAmount": 0.500000,
+                    "MaterID": 247,
+                    "UnitType": 2,
+                    "Remark": null
                 }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
+                    "MaterName": "百威460ML棕瓶塑箱空瓶",
+                    "MaterUnitName": "罐",
+                    "MaterUnitList": [{
+                        "id": 1,
+                        "text": "箱"
+                    }, {
+                        "id": 2,
+                        "text": "罐"
+                    }],
+                    "ConFactor": 1.000,
+                    "PurchPrice": 0.500000,
+                    "WhsAmount": 0.500000,
+                    "MaterID": 247,
+                    "UnitType": 2,
+                    "Remark": null
                 }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
+                    "MaterName": "百威460ML棕瓶塑箱空瓶",
+                    "MaterUnitName": "罐",
+                    "MaterUnitList": [{
+                        "id": 1,
+                        "text": "箱"
+                    }, {
+                        "id": 2,
+                        "text": "罐"
+                    }],
+                    "ConFactor": 1.000,
+                    "PurchPrice": 0.500000,
+                    "WhsAmount": 0.500000,
+                    "MaterID": 247,
+                    "UnitType": 2,
+                    "Remark": null
                 }]
             }
         },
@@ -236,6 +194,9 @@
             },
             handleDelete(index, row) {
                 row.splice(index, 1);
+            },
+            getData() {
+                alert(JSON.stringify(this.tableData));
             }
         }
     }

@@ -2,5 +2,8 @@
     "editor.minimap.showSlider": "always",
     "editor.renderIndentGuides": false,
     "editor.showFoldingControls": "always",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.fontSize": 13,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.fontFamily": "新宋体,Consolas, 'Courier New', monospace"
 }

@@ -23,3 +23,8 @@ li>a i {
 .table {
     margin-top: 30px;
 }
+
+.table .cell .el-input__inner {
+    background-color: transparent;
+    border: none;
+}
