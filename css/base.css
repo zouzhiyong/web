@@ -1,16 +1,25 @@
 body {
-    font-size: 12px;
+    font-size: 14px;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
+
 html,
 body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
+
 a:focus,
 a:hover {
     outline: 0 none;
     text-decoration: none;
 }
+
 li>a i {
     margin-right: 10px;
+}
+
+.table {
+    margin-top: 30px;
 }
