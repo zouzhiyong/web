@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/module.css">
+</head>
+
+<body>
+    <div id="app">
+        <my-component :my-value="value"></my-component>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.min.js"></script>
+<script src="../js/index.js"></script>
+<script>
+    var option = {
+        data() {
+            return {
+                value: "测试"
+            }
+        },
+        components: {
+            "my-component": {
+                props: ['myValue'],
+                template: '<div><ul><li>123</li><li>{{myValue}}</li></ul></div>'
+            }
+        }
+    }
+
+    var vEx = Vue.extend(option);
+    new vEx().$mount("#app");
+</script>

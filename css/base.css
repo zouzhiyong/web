@@ -26,5 +26,19 @@ li>a i {
 
 .table .cell .el-input__inner {
     background-color: transparent;
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
+.table .cell .el-input__inner:focus {
+    border: 1px solid #ddd;
+}
+
+.table.tb-edit.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: transparent;
+}
+
+.table.tb-edit.el-table .cell,
+.el-table th>div {
+    padding: 0;
 }
