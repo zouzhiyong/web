@@ -53,7 +53,7 @@
                     <el-table-column prop="MaterID" label="商品编号&名称" header-align="center">
                         <template scope="scope">                            
                         <el-input v-model="scope.row.MaterName" :ref="'profile'+scope.$index" placeholder=""  @focus="focusTodo($event,scope.$index)" @blur="blurTodo($event,-1)"  v-on:keyup.enter.native="enterClick($event,scope.row)">      
-                            <i v-if="scope.$index==icon" slot="icon" class="el-input__icon el-icon-more is-clickable" @click="enterClick($event,scope.row)"></i> 
+                            <i v-if="scope.$index==icon" slot="append" class="el-input__icon el-icon-more is-clickable" @click="enterClick($event,scope.row)"></i> 
                         </el-input>
                         </template>
                     </el-table-column>
