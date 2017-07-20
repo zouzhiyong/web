@@ -47,10 +47,3 @@ li>a i {
 .el-table th>div {
     padding: 0;
 }
-
-.table.tb-edit .cell .el-input-group__append,
-.table.tb-edit .cell .el-input-group__prepend {
-    border: none;
-    padding: 0;
-    width: 0;
-}
