@@ -10,6 +10,10 @@ body {
     padding: 0;
 }
 
+[v-cloak] {
+    display: none;
+}
+
 a:focus,
 a:hover {
     outline: 0 none;
@@ -24,14 +28,15 @@ li>a i {
     margin-top: 30px;
 }
 
-.table .cell .el-input__inner {
+.table.tb-edit .cell .el-input__inner {
     background-color: transparent;
-    border: 1px solid transparent;
     border-radius: 0;
+    border-width: 0;
+    height: 39px;
 }
 
-.table .cell .el-input__inner:focus {
-    border: 1px solid #ddd;
+.table.tb-edit .cell .el-input__inner:focus {
+    border-width: 1px;
 }
 
 .table.tb-edit.el-table--enable-row-hover .el-table__body tr:hover>td {

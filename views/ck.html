@@ -12,25 +12,31 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <el-row>
             <el-col :span="24">
                 <el-form :inline="true" :model="formInline" class="demo-form-inline query-form">
                     <el-form-item label="供货单位">
-                        <el-input v-model="formInline.dw" placeholder="供货单位" icon="more" :on-icon-click="handleIconClick">
+                        <el-input v-model="formInline.dw" placeholder="供货单位" icon="more">
                         </el-input>
                     </el-form-item>
+                    <el-form-item label="单据类型">
+                        <el-select v-model="formInline.billType" placeholder="单据类型">
+                            <el-option v-for="item in billTypeOption" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
                     <el-form-item label="经手人">
-                        <el-input v-model="formInline.jsr" placeholder="经手人" icon="more" :on-icon-click="handleIconClick">
+                        <el-input v-model="formInline.jsr" placeholder="经手人" icon="more">
                         </el-input>
                     </el-form-item>
                     <el-form-item label="部门">
-                        <el-input v-model="formInline.bm" placeholder="部门" icon="more" :on-icon-click="handleIconClick">
+                        <el-input v-model="formInline.bm" placeholder="部门" icon="more">
                         </el-input>
                     </el-form-item>
                     <el-form-item label="收货仓库">
                         <el-select v-model="formInline.ck" placeholder="收货仓库">
-                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                            <el-option v-for="item in ckOptions" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -39,14 +45,14 @@
                         <el-button type="primary" @click="getData">获取数据</el-button>
                     </el-form-item>
                 </el-form>
-                <el-table :data="tableData" border class="table tb-edit" :height="height">
+                <el-table :data="tableData" border class="table tb-edit" height="auto" v-loading.body="loading">
                     <el-table-column type="selection" width="55" header-align="center" align="center">
                     </el-table-column>
                     <el-table-column type="index" label="序号" width="100" header-align="center" align="center">
                     </el-table-column>
                     <el-table-column prop="MaterID" label="商品编号&名称" header-align="center">
                         <template scope="scope">
-                        <el-input v-model="scope.row.MaterName" placeholder=""></el-input>
+                        <el-input v-model="scope.row.MaterName" :ref="'profile'+scope.$index" placeholder="" :icon="icon==scope.$index?'more':''" @focus="focusTodo($event,scope.$index)" @blur="blurTodo($event,-1)" v-on:keyup.enter.native="handleIconClick" :on-icon-click="handleIconClick"></el-input>
                         </template>
                     </el-table-column>
                     <el-table-column prop="UnitType" label="单位" width="100" header-align="center" align="center">
@@ -94,20 +100,39 @@
 </body>
 
 </html>
+<script src="../js/jquery.min.js"></script>
 <script src="../js/vue.min.js"></script>
 <script src="../js/index.js"></script>
 <script>
     var option = {
         data() {
             return {
-                height: document.body.offsetHeight - 150,
+                icon: -1,
+                loading: false,
+                billTypeOption: [{
+                    value: "001",
+                    label: "进货入库单"
+                }, {
+                    value: "002",
+                    label: "其它入库单"
+                }, {
+                    value: "003",
+                    label: "其它出库单"
+                }, {
+                    value: "004",
+                    label: "报溢单"
+                }, {
+                    value: "005",
+                    label: "报损单"
+                }],
                 formInline: {
+                    billType: '',
                     dw: '',
                     jsr: '',
                     bm: '',
                     ck: ''
                 },
-                options: [{
+                ckOptions: [{
                     value: '001',
                     label: '仓库1'
                 }, {
@@ -199,13 +224,29 @@
             for (var i = 0; i < 20; i++) {
                 this.tableData.push(JSON.parse(JSON.stringify(json)));
             }
+
+            var _$el = $(".el-table__body-wrapper");
+            _$el.height($(window).height() - _$el.offset().top - 100);
+            $(window).resize(function() {
+                _$el.height($(window).height() - _$el.offset().top - 100);
+            });
+
         },
         methods: {
             onSubmit() {
                 alert(JSON.stringify(this.formInline));
             },
             handleIconClick(ev) {
-                console.log(ev);
+                alert("dddd");
+                // row.MaterUnitList = [{
+                //     "id": 1,
+                //     "text": "箱"
+                // }, {
+                //     "id": 2,
+                //     "text": "罐"
+                // }];
+                // row.UnitType = 1;
+
             },
             handleEdit(index, row) {
                 row.name = "修改后的名称";
@@ -217,9 +258,25 @@
             },
             getData() {
                 alert(JSON.stringify(this.tableData));
+            },
+            focusTodo(ev, index) {
+                this.icon = index;
+                console.log(ev);
+
+                //console.log(this.$refs['profile' + index].$el);
+                //$(this.$refs['profile' + index].$el).find(".el-icon-more").show();
+
+            },
+            blurTodo(ev, index) {
+                setTimeout(function() {
+                    this.icon = index;
+                    console.log(ev);
+                }, 200);
+
             }
         }
     }
     var vEx = Vue.extend(option);
-    new vEx().$mount("#app");
+    var vm = new vEx();
+    vm.$mount("#app");
 </script>

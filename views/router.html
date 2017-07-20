@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/module.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- <router-link to="/activePublic">Go to Foo</router-link> -->
+        <router-view class="view"></router-view>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.min.js"></script>
+<script src="../js/vue-router.js"></script>
+<script src="../js/index.js"></script>
+<script>
+    const activePublic = {
+        template: '<div>foo</div>'
+    }
+    const routes = [{
+        path: '/activePublic',
+        component: activePublic
+    }];
+
+    const router = new VueRouter({
+        routes // （缩写）相当于 routes: routes
+    });
+    const app = new Vue({
+        router
+    }).$mount('#app');
+
+    router.push('activePublic'); //相当于<router-link>
+</script>
