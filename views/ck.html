@@ -51,8 +51,10 @@
                     <el-table-column type="index" label="序号" width="100" header-align="center" align="center">
                     </el-table-column>
                     <el-table-column prop="MaterID" label="商品编号&名称" header-align="center">
-                        <template scope="scope">
-                        <el-input v-model="scope.row.MaterName" :ref="'profile'+scope.$index" placeholder="" :icon="icon==scope.$index?'more':''" @focus="focusTodo($event,scope.$index)" @blur="blurTodo($event,-1)"  v-on:keyup.enter.native="enterClick($event,scope.row)" :on-icon-click="handleIconClick"></el-input>
+                        <template scope="scope">                            
+                        <el-input v-model="scope.row.MaterName" :ref="'profile'+scope.$index" placeholder=""  @focus="focusTodo($event,scope.$index)" @blur="blurTodo($event,-1)"  v-on:keyup.enter.native="enterClick($event,scope.row)">      
+                            <i v-if="scope.$index==icon" slot="append" class="el-input__icon el-icon-more is-clickable" @click="enterClick($event,scope.row)"></i> 
+                        </el-input>
                         </template>
                     </el-table-column>
                     <el-table-column prop="UnitType" label="单位" width="100" header-align="center" align="center">
@@ -249,12 +251,6 @@
                 }];
                 row.UnitType = 2;
 
-            },
-            handleIconClick(ev) {
-                console.log(ev);
-                // var e = jQuery.Event("keyup"); //模拟一个键盘事件
-                // e.keyCode = 13; //keyCode=13是回车
-                // $(ev.target).next('.el-input__inner').trigger(e); //模拟按下回车
             },
             handleEdit(index, row) {
                 row.name = "修改后的名称";
