@@ -52,7 +52,7 @@
                     </el-table-column>
                     <el-table-column prop="MaterID" label="商品编号&名称" header-align="center">
                         <template scope="scope">
-                        <el-input v-model="scope.row.MaterName" :ref="'profile'+scope.$index" placeholder="" :icon="icon==scope.$index?'more':''" @focus="focusTodo($event,scope.$index)" @blur="blurTodo($event,-1)" v-on:keyup.enter.native="handleIconClick" :on-icon-click="handleIconClick"></el-input>
+                        <el-input v-model="scope.row.MaterName" :ref="'profile'+scope.$index" placeholder="" :icon="icon==scope.$index?'more':''" @focus="focusTodo($event,scope.$index)" @blur="blurTodo($event,-1)"  v-on:keyup.enter.native="enterClick($event,scope.row)" :on-icon-click="handleIconClick"></el-input>
                         </template>
                     </el-table-column>
                     <el-table-column prop="UnitType" label="单位" width="100" header-align="center" align="center">
@@ -209,7 +209,7 @@
                 }]
             }
         },
-        mounted: function() {
+        mounted() {
             var json = {
                 "MaterName": "",
                 "MaterUnitName": "",
@@ -231,22 +231,29 @@
                 _$el.height($(window).height() - _$el.offset().top - 100);
             });
 
+
         },
         methods: {
             onSubmit() {
                 alert(JSON.stringify(this.formInline));
             },
-            handleIconClick(ev) {
-                alert("dddd");
-                // row.MaterUnitList = [{
-                //     "id": 1,
-                //     "text": "箱"
-                // }, {
-                //     "id": 2,
-                //     "text": "罐"
-                // }];
-                // row.UnitType = 1;
+            enterClick(ev,row) {
+                //alert("dddd");
+                row.MaterID = 1;
+                row.MaterUnitList = [{
+                    "id": 1,
+                    "text": "箱"
+                }, {
+                    "id": 2,
+                    "text": "罐"
+                }];
+                row.UnitType = 2;
 
+            },
+            handleIconClick(ev){
+                var e = jQuery.Event("keydown");//模拟一个键盘事件
+                e.keyCode = 13;//keyCode=13是回车
+                $(ev.target).next('input').trigger(e);//模拟按下回车
             },
             handleEdit(index, row) {
                 row.name = "修改后的名称";
@@ -260,19 +267,17 @@
                 alert(JSON.stringify(this.tableData));
             },
             focusTodo(ev, index) {
-                this.icon = index;
-                console.log(ev);
-
+                setTimeout(function() {
+                    vm.$data.icon = index;
+                }, 100);
                 //console.log(this.$refs['profile' + index].$el);
                 //$(this.$refs['profile' + index].$el).find(".el-icon-more").show();
 
             },
             blurTodo(ev, index) {
                 setTimeout(function() {
-                    this.icon = index;
-                    console.log(ev);
-                }, 200);
-
+                    vm.$data.icon = index;
+                }, 100);
             }
         }
     }

@@ -6,5 +6,7 @@
     "editor.fontSize": 13,
     "workbench.iconTheme": "vscode-icons",
     "editor.fontFamily": "新宋体,Consolas, 'Courier New', monospace",
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 130
 }
