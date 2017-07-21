@@ -14,6 +14,10 @@ body {
     display: none;
 }
 
+.el-row {
+    margin-bottom: 20px;
+}
+
 a:focus,
 a:hover {
     outline: 0 none;
@@ -25,7 +29,7 @@ li>a i {
 }
 
 .table {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .table.tb-edit .cell .el-input__inner {
@@ -46,4 +50,16 @@ li>a i {
 .table.tb-edit.el-table .cell,
 .el-table th>div {
     padding: 0;
+}
+
+.table.tb-edit.el-table .el-input-group__append,
+.table.tb-edit.el-table .el-input-group__prepend {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 0;
+}
+
+.table.tb-edit.el-table .operate .cell i {
+    margin: 0 8px;
 }

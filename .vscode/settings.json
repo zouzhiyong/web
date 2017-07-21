@@ -8,5 +8,8 @@
     "editor.fontFamily": "新宋体,Consolas, 'Courier New', monospace",
     "editor.tabSize": 2,
     "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 130
+    "editor.wordWrapColumn": 130,
+    "editor.wrappingIndent": "indent",
+    "editor.formatOnType": true,
+    "window.openFilesInNewWindow": "on"
 }

@@ -26,9 +26,9 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="经手人">
-                        <el-input v-model="formInline.jsr" placeholder="经手人" icon="more">
-                        </el-input>
+                    <el-form-item label="单据日期">
+                        <el-date-picker v-model="formInline.date" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions0">
+                        </el-date-picker>
                     </el-form-item>
                     <el-form-item label="部门">
                         <el-input v-model="formInline.bm" placeholder="部门" icon="more">
@@ -41,7 +41,6 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit">查询</el-button>
                         <el-button type="primary" @click="getData">获取数据</el-button>
                     </el-form-item>
                 </el-form>
@@ -65,38 +64,63 @@
                         </el-select>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="ConFactor" label="出入库数量" width="150" header-align="center" align="center">
+                    <el-table-column prop="actUnitType" label="实际单位" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-select v-model="scope.row.actUnitType" placeholder="" v-if="scope.row.MaterID>0">
+                            <el-option v-for="item in scope.row.MaterUnitList" :key="item.id" :label="item.text" :value="item.id">
+                            </el-option>
+                        </el-select>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="sl" label="税率" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.sl" placeholder=""></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="PurchPriceSh" label="税后单价" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.PurchPriceSh" placeholder=""></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="pc" label="批次" width="100" header-align="center" align="center">
+                        <template scope="scope">
+                        <el-input v-model="scope.row.pc" placeholder=""></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="ConFactor" label="数量" width="100" header-align="center" align="center">
                         <template scope="scope">
                         <el-input v-model="scope.row.ConFactor" placeholder=""></el-input>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="PurchPrice" label="单价" width="100" header-align="center" align="center">
+                    <el-table-column prop="PurchPrice" label="实际金额" width="100" header-align="center" align="center">
                         <template scope="scope">
                         <el-input v-model="scope.row.PurchPrice" placeholder=""></el-input>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="WhsAmount" label="金额" width="100" header-align="center" align="center">
+                    <el-table-column prop="WhsAmount" label="税后金额" width="100" header-align="center" align="center">
                         <template scope="scope">
                         <el-input v-model="scope.row.WhsAmount" placeholder=""></el-input>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="Remark" label="备注" width="400" header-align="center" align="center">
+                    <el-table-column prop="Remark" label="单据来源" width="100" header-align="center" align="center">
                         <template scope="scope">
                         <el-input v-model="scope.row.Remark" placeholder=""></el-input>
                         </template>
                     </el-table-column>
-                    <el-table-column label="操作" header-align="center" align="center" width="300">
+                    <el-table-column label="操作" header-align="center" align="center" width="200" class-name="operate">
                         <template scope="scope">
                             <template v-if="scope.row.MaterID>0">
-                                <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                                <el-button size="small" type="danger" @click="handleDelete(scope.$index, tableData)">删除</el-button>
+                                <el-button type="text" icon="edit" @click="handleEdit(scope.$index, scope.row)"></el-button>
+                                <el-button type="text" icon="delete" @click="handleDelete(scope.$index, tableData)"></el-button>
+                              
                             </template>
                         </template>
                     </el-table-column>
                 </el-table>
-
-
             </el-col>
+        </el-row>
+        <el-row type="flex" justify="center">
+            <el-button type="primary" @click="onSubmit">查询</el-button>
         </el-row>
     </div>
 </body>
@@ -111,6 +135,28 @@
             return {
                 icon: -1,
                 loading: false,
+                pickerOptions0: {
+                    shortcuts: [{
+                        text: '今天',
+                        onClick(picker) {
+                            picker.$emit('pick', new Date());
+                        }
+                    }, {
+                        text: '昨天',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '一周前',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', date);
+                        }
+                    }]
+                },
                 billTypeOption: [{
                     value: "001",
                     label: "进货入库单"
@@ -130,7 +176,7 @@
                 formInline: {
                     billType: '',
                     dw: '',
-                    jsr: '',
+                    date: '',
                     bm: '',
                     ck: ''
                 },
@@ -154,6 +200,10 @@
                         "id": 2,
                         "text": "罐"
                     }],
+                    "pc": 5,
+                    "PurchPriceSh": 12.000,
+                    "sl": 0.5,
+                    "actUnitType": 1,
                     "ConFactor": 1.000,
                     "PurchPrice": 0.500000,
                     "WhsAmount": 0.500000,
@@ -170,6 +220,10 @@
                         "id": 2,
                         "text": "罐"
                     }],
+                    "pc": 3,
+                    "PurchPriceSh": 5.000,
+                    "sl": 0.5,
+                    "actUnitType": 1,
                     "ConFactor": 1.000,
                     "PurchPrice": 0.500000,
                     "WhsAmount": 0.500000,
@@ -186,6 +240,10 @@
                         "id": 2,
                         "text": "罐"
                     }],
+                    "pc": 6,
+                    "PurchPriceSh": 1.000,
+                    "sl": 0.5,
+                    "actUnitType": 1,
                     "ConFactor": 1.000,
                     "PurchPrice": 0.500000,
                     "WhsAmount": 0.500000,
@@ -202,6 +260,10 @@
                         "id": 2,
                         "text": "罐"
                     }],
+                    "pc": 10,
+                    "PurchPriceSh": 8.000,
+                    "sl": 0.5,
+                    "actUnitType": 1,
                     "ConFactor": 1.000,
                     "PurchPrice": 0.500000,
                     "WhsAmount": 0.500000,
