@@ -63,3 +63,7 @@ li>a i {
 .table.tb-edit.el-table .operate .cell i {
     margin: 0 8px;
 }
+
+.table.tb-edit.el-table .cell .center-input .el-input__inner {
+    text-align: center;
+}

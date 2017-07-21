@@ -45,7 +45,8 @@
                     </el-form-item>
                 </el-form>
                 <el-table :data="tableData" border class="table tb-edit" height="auto" v-loading.body="loading" show-summary :summary-method="getSummaries">
-                    <div>dddddddddd</div>
+                    <!-- <el-table-column type="selection" width="55" header-align="center" align="center">
+                    </el-table-column> -->
                     <el-table-column type="index" label="序号" width="100" header-align="center" align="center">
                     </el-table-column>
                     <el-table-column prop="MaterID" label="商品编号&名称" header-align="center">
@@ -346,7 +347,7 @@
                 const sums = [];
                 columns.forEach((column, index) => {
                     if (index === 0) {
-                        sums[index] = '合计：';
+                        sums[index] = '总价';
                         return;
                     }
                     const values = data.map(item => Number(item[column.property]));
@@ -359,26 +360,7 @@
                                 return prev;
                             }
                         }, 0);
-
-                        switch (column.property) {
-                            case "PurchPriceSh":
-                                sums[index] = '￥' + sums[index];
-                                break;
-                            case "pc":
-                                sums[index];
-                                break;
-                            case "ConFactor":
-                                sums[index];
-                                break;
-                            case "PurchPrice":
-                                sums[index] = '￥' + sums[index];
-                                break;
-                            case "WhsAmount":
-                                sums[index] = '￥' + sums[index];
-                                break;
-                            default:
-                                sums[index] = '';
-                        }
+                        sums[index] += ' 元';
                     } else {
                         sums[index] = '';
                     }
