@@ -25,7 +25,7 @@
         "vue": "^2.4.2"
     },
     "scripts": {
-        "dev": "webpack --display-modules --display-chunks --config webpack.config.js",
+        "dev": "webpack --display-modules --display-chunks --config webpack.prod.conf.js",
         "build": "node dev-server.js"
     },
     "description": "框架\r [链接网址](https://zouzhiyong.github.io/web/index.html)",

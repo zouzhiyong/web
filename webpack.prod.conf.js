@@ -18,18 +18,18 @@ config.plugins = [
         }
     }),
     // 压缩代码
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //     compress: {
+    //         warnings: false
+    //     }
+    // }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     // 提取css为单文件
     new ExtractTextPlugin("../[name].[contenthash].css"),
 
     new HtmlWebpackPlugin({
-        filename: '../test.html',
-        template: path.resolve(__dirname, './components/test.html'),
+        filename: '../index.html',
+        template: path.resolve(__dirname, './components/app/index/index.html'),
         inject: true
     })
 ];

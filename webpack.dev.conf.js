@@ -13,8 +13,8 @@ config.plugins = [
     new webpack.NoErrorsPlugin(),
 
     new HtmlWebpackPlugin({
-        filename: 'components/test.html',
-        template: path.resolve(__dirname, './components/test.html'),
+        filename: 'components/app/index/index.html',
+        template: path.resolve(__dirname, './components/app/index/index.html'),
         inject: true
     })
 ];
