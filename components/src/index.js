@@ -1,5 +1,9 @@
-import {
-    firstName,
-    lastName
-} from './export.js';
-console.log(firstName + " " + lastName);
+import Vue from 'vue';
+import Hello from "../Hello.vue";
+
+new Vue({
+    el: "#app",
+    components: {
+        Hello
+    }
+})
