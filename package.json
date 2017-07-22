@@ -9,13 +9,14 @@
         "babel-runtime": "^6.23.0",
         "css-loader": "^0.28.4",
         "express": "^4.15.3",
+        "extract-text-webpack-plugin": "^3.0.0",
         "html-webpack-plugin": "^2.29.0",
         "vue-hot-reload-api": "^2.1.0",
         "vue-html-loader": "~1.2.4",
         "vue-loader": "^12.2.2",
         "vue-style-loader": "^3.0.1",
         "vue-template-compiler": "^2.4.2",
-        "webpack": "^2.7.0",
+        "webpack": "^3.1.0",
         "webpack-dev-middleware": "^1.11.0",
         "webpack-dev-server": "^2.5.1",
         "webpack-hot-middleware": "^2.18.2"
@@ -24,8 +25,8 @@
         "vue": "^2.4.2"
     },
     "scripts": {
-        "dev": "webpack-dev-server --inline --hot --env.dev",
-        "build": "rimraf dist && webpack -p --progress --hide-modules"
+        "dev": "webpack --display-modules --display-chunks --config webpack.config.js",
+        "build": "node dev-server.js"
     },
     "description": "框架\r [链接网址](https://zouzhiyong.github.io/web/index.html)",
     "main": "Gruntfile.js",
