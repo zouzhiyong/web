@@ -11,14 +11,22 @@
 
 <body>
     <div id="app">
-        <yt-button type="primary">主要按钮</yt-button>
+        <yt-button type="primary" @click="clickTodo">主要按钮</yt-button>
     </div>
 
 </body>
 <script src="../js/vue.min.js"></script>
 <script src="../build/button.js"></script>
 <script>
-    new Vue().$mount('#app')
+    var option = {
+        el: "#app",
+        methods: {
+            clickTodo: function() {
+                alert("ddd")
+            }
+        }
+    }
+    new Vue(option);
 </script>
 
 </html>
