@@ -1,44 +1,64 @@
-// nodejs 中的path模块
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
-    // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
-    entry: {
-        index: path.resolve(__dirname, './components/app/index/index.js')
-    },
-    // 输出配置
+    entry: './components/js/button.js',
     output: {
-        // 输出路径是 myProject/output/static
-        path: path.resolve(__dirname, './components/output/static'),
-        publicPath: 'static/',
-        filename: '[name].js', //'[name].[hash].js'
-        chunkFilename: '[id].[chunkhash].js'
-    },
-    resolve: {
-        extensions: ['.css', '.js', '.vue'],
-        alias: {
-            'vue': 'vue/dist/vue.js'
-        }
+        path: path.resolve(__dirname, './build'),
+        publicPath: '/build/',
+        filename: 'button.js'
     },
     module: {
-        rules: [
-            // 使用vue-loader 加载 .vue 结尾的文件
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            }, {
-                test: /\.js$/,
-                loader: 'babel-loader?presets=es2015',
-                exclude: /node_modules/
+        rules: [{
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: {
+                loaders: {}
+                // other vue-loader options go here
             }
-        ]
+        }, {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        }, {
+            test: /\.(png|jpg|gif|svg)$/,
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]?[hash]'
+            }
+        }]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: '../index.html',
-            template: path.resolve(__dirname, './components/app/index/index.html'),
-            inject: true
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
+    devServer: {
+        historyApiFallback: true,
+        noInfo: true
+    },
+    performance: {
+        hints: false
+    },
+    devtool: '#source-map'
+}
+
+if (process.env.NODE_ENV === 'production') {
+    module.exports.devtool = '#source-map'
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
         })
-    ]
+    ])
 }

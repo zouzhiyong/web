@@ -11,5 +11,6 @@
     "editor.wordWrapColumn": 130,
     "editor.wrappingIndent": "indent",
     "editor.formatOnType": true,
-    "window.openFilesInNewWindow": "on"
+    "window.openFilesInNewWindow": "on",
+    "git.ignoreLimitWarning": true
 }
