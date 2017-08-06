@@ -5,21 +5,24 @@
         "babel-core": "^6.25.0",
         "babel-loader": "^7.1.1",
         "babel-preset-env": "^1.6.0",
+        "babel-preset-es2015": "^6.24.1",
         "cross-env": "^3.0.0",
         "css-loader": "^0.28.4",
+        "element-ui": "^1.4.1",
         "file-loader": "^0.9.0",
-        "babel-preset-es2015": "^6.24.1",
         "vue-loader": "^12.2.2",
         "vue-template-compiler": "^2.4.2",
-        "element-ui": "^1.4.1",
-        "webpack": "^3.1.0"
+        "webpack": "^3.1.0",
+        "webpack-dev-server": "^2.6.1"
     },
     "dependencies": {
         "vue": "^2.4.2"
     },
     "scripts": {
-        "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+        "//": "当使用webpack-dev-server --hot --inline命令时，在每次修改文件，是将文件打包保存在内存中",
+        "dev": "cross-env NODE_ENV=development webpack-dev-server --open",
+        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+        "watch": "webpack --progress --watch"
     },
     "description": "框架\r [链接网址](https://zouzhiyong.github.io/web/index.html)",
     "main": "Gruntfile.js",

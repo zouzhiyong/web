@@ -2,11 +2,26 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: './components/js/button.js',
+    entry: {
+        button: [path.resolve(__dirname, './components/js/button.js')]
+    },
     output: {
         path: path.resolve(__dirname, './build'),
         publicPath: '/build/',
-        filename: 'button.js'
+        filename: '[name].bundle.js',
+        sourceMapFilename: '[name].map'
+    },
+    devServer: {
+        port: 8080,
+        host: 'localhost',
+        inline: true,
+        historyApiFallback: true,
+        noInfo: true,
+        https: false,
+        stats: 'minimal',
+        historyApiFallback: true,
+        contentBase: path.resolve(__dirname, './'),
+        publicPath: '/build/'
     },
     module: {
         rules: [{
@@ -33,14 +48,14 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true
-    },
+    // devServer: {
+    //     historyApiFallback: true,
+    //     noInfo: true
+    // },
     performance: {
         hints: false
     },
-    devtool: '#source-map'
+    devtool: '#eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
