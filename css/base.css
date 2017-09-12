@@ -3,8 +3,7 @@ body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -18,8 +17,7 @@ body {
     margin-bottom: 20px;
 }
 
-a:focus,
-a:hover {
+a:focus, a:hover {
     outline: 0 none;
     text-decoration: none;
 }
@@ -51,13 +49,11 @@ li>a i {
     background-color: transparent;
 }
 
-.table.tb-edit.el-table .cell,
-.el-table th>div {
+.table.tb-edit.el-table .cell, .el-table th>div {
     padding: 0;
 }
 
-.table.tb-edit.el-table .el-input-group__append,
-.table.tb-edit.el-table .el-input-group__prepend {
+.table.tb-edit.el-table .el-input-group__append, .table.tb-edit.el-table .el-input-group__prepend {
     background-color: transparent;
     border: none;
     padding: 0;
