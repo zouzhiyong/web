@@ -43,10 +43,7 @@
         render: function(_c) {
             var _self = this;
             return _c('el-form', {
-                attrs: {
-                    model: _self.value,
-                    inline: true
-                },
+                attrs: _self.form.attrs ? JSON.parse(JSON.stringify(_self.form.attrs)) : {},
                 staticClass: _self.form.class,
                 ref: _self.ref
             }, [
@@ -73,6 +70,7 @@
                                 }
                             },
                             staticClass: item.control.class,
+                            staticStyle: item.control.style,
                             ref: item.control.ref,
                             on: _$on
                         })
@@ -88,6 +86,7 @@
                                 }
                             },
                             staticClass: item.control.class,
+                            staticStyle: item.control.style,
                             ref: item.control.ref,
                             on: _$on
                         }, [
@@ -107,6 +106,7 @@
                         control = _c(item.control.name, {
                             attrs: JSON.parse(JSON.stringify(item.control.attrs)),
                             staticClass: item.control.class,
+                            staticStyle: item.control.style,
                             ref: item.control.ref,
                             on: _$on
                         }, [
@@ -129,9 +129,9 @@
         data: {
             form: {
                 attrs: {
-                    inline: 'true'
+                    labelWidth: "80px",
+                    inline: false
                 },
-                class: 'demo-form-inline',
                 item: [{
                     attrs: {
                         label: '审批人',
@@ -151,6 +151,9 @@
                         attrs: {
                             placeholder: '审批人'
                         },
+                        style: {
+                            width: '300px'
+                        },
                         model: 'user'
                     }
                 }, {
@@ -160,9 +163,12 @@
                     },
                     control: {
                         name: 'el-select',
+                        style: {
+                            width: '300px'
+                        },
                         attrs: {
                             placeholder: '活动区域',
-                            clearable: 'true'
+                            clearable: true
                         },
                         model: 'region',
                         option: [{
