@@ -18,145 +18,185 @@
 <script src="../js/index.js"></script>
 <script>
     Vue.component('cust-form', {
+        data: function() {
+            var v = {};
+            this.form.item.map(function(item) {
+                if (item.control.model) {
+                    v[item.control.model] = item.control.value || ''
+                }
+            })
+
+            return {
+                value: v
+            }
+        },
         props: {
-            value: {
-                type: Object
-            },
             form: {
                 type: Object
+            }
+        },
+        methods: {
+            handleClick: function() {
+                console.log(this.value)
             }
         },
         render: function(_c) {
             var _self = this;
             return _c('el-form', {
-                attrs: _self.form.attrs,
-                model: {
-                    value: (_self.value),
-                    callback: function($$v) {
-                        _self.value = $$v
-                    }
+                attrs: {
+                    model: _self.value,
+                    inline: true
                 },
                 staticClass: _self.form.class,
                 ref: _self.ref
             }, [
-                _self._l(_self.form.formitem, function(item) {
+                _self._l(_self.form.item, function(item) {
+                    //获取事件                    
+                    var control = {};
+                    var _$on = {};
+                    for (var key in item.control.on) {
+                        _$on[key] = _self[item.control.on[key]]
+
+                    }
+
+                    //只获取默认值
+                    if (item.control.name == '') return;
+
+                    //文本控件
+                    if (item.control.name == 'el-input') {
+                        control = _c(item.control.name, {
+                            attrs: JSON.parse(JSON.stringify(item.control.attrs)),
+                            model: {
+                                value: (_self.value[item.control.model]),
+                                callback: function($$v) {
+                                    _self.value[item.control.model] = $$v
+                                }
+                            },
+                            staticClass: item.control.class,
+                            ref: item.control.ref,
+                            on: _$on
+                        })
+                    }
+                    //下拉选择控件
+                    if (item.control.name == 'el-select') {
+                        control = _c(item.control.name, {
+                            attrs: JSON.parse(JSON.stringify(item.control.attrs)),
+                            model: {
+                                value: (_self.value[item.control.model]),
+                                callback: function($$v) {
+                                    _self.value[item.control.model] = $$v
+                                }
+                            },
+                            staticClass: item.control.class,
+                            ref: item.control.ref,
+                            on: _$on
+                        }, [
+                            _self._l(item.control.option, function(_item) {
+                                return _c('el-option', {
+                                    attrs: {
+                                        label: _item.label,
+                                        value: _item.value
+                                    }
+                                })
+                            })
+                        ])
+                    }
+
+                    //按钮控件
+                    if (item.control.name == 'el-button') {
+                        control = _c(item.control.name, {
+                            attrs: JSON.parse(JSON.stringify(item.control.attrs)),
+                            staticClass: item.control.class,
+                            ref: item.control.ref,
+                            on: _$on
+                        }, [
+                            _self._v(item.control.label)
+                        ])
+                    }
+
                     return _c('el-form-item', {
-                        attrs: item.attrs,
+                        attrs: item.attrs ? JSON.parse(JSON.stringify(item.attrs)) : {},
                         staticClass: item.class,
                         ref: item.ref
-                    }, [
-                        _self._l(item.control, function(_item) {
-                            //文本控件
-                            if (_item.name == 'el-input') {
-                                return _c(_item.name, {
-                                    attrs: _item.attrs,
-                                    model: {
-                                        value: (_self[_item.attrs.model]),
-                                        callback: function($$v) {
-                                            _self[_item.attrs.model] = $$v
-                                        }
-                                    },
-                                    staticClass: _item.class,
-                                    ref: _item.ref,
-                                    on: _item.on
-                                })
-                            }
-                            //下拉选择控件
-                            if (_item.name == 'el-select') {
-                                return _c(_item.name, {
-                                    attrs: _item.attrs,
-                                    model: {
-                                        value: (_self[_item.attrs.model]),
-                                        callback: function($$v) {
-                                            _self[_item.attrs.model] = $$v
-                                        }
-                                    },
-                                    staticClass: _item.class,
-                                    ref: _item.ref,
-                                    on: _item.on
-                                }, [
-                                    _self._l(_item.option, function(__item) {
-                                        return _c('el-option', {
-                                            attrs: {
-                                                label: __item.label,
-                                                value: __item.value
-                                            }
-                                        })
-                                    })
-                                ])
-                            }
-
-                        })
-                    ])
+                    }, [control])
                 })
             ])
         }
     })
 
-    var form = {
-        attrs: {
-            inline: true
-        },
-        model: 'formInline',
-        class: 'demo-form-inline',
-        ref: '',
-        formitem: [{
-            attrs: {
-                label: '审批人',
-                prop: 'user'
-            },
-            control: [{
-                name: 'el-input',
-                attrs: {
-                    placeholder: '审批人'
-                },
-                model: 'formInline.user',
-                on: {},
-                ref: ''
-            }]
-        }, {
-            attrs: {
-                label: '活动区域',
-                prop: 'region'
-            },
-            control: [{
-                name: 'el-select',
-                attrs: {
-                    model: 'formInline.region',
-                    placeholder: '活动区域'
-                },
-                model: '',
-                on: {},
-                ref: '',
-                url: '',
-                option: [{
-                    value: '1',
-                    label: '区域一'
-                }, {
-                    value: '2',
-                    label: '区域二'
-                }]
-            }]
-        }]
-    }
     var _vm = new Vue({
         el: '#app',
         data: {
-            formInline: {
-                user: '',
-                region: ''
+            form: {
+                attrs: {
+                    inline: 'true'
+                },
+                class: 'demo-form-inline',
+                item: [{
+                    attrs: {
+                        label: '审批人',
+                        prop: 'user',
+                        rules: [{
+                            required: 'true',
+                            message: '请输入邮箱地址',
+                            trigger: 'blur'
+                        }, {
+                            type: 'email',
+                            message: '请输入正确的邮箱地址',
+                            trigger: 'blur,change'
+                        }]
+                    },
+                    control: {
+                        name: 'el-input',
+                        attrs: {
+                            placeholder: '审批人'
+                        },
+                        model: 'user'
+                    }
+                }, {
+                    attrs: {
+                        label: '活动区域',
+                        prop: 'region'
+                    },
+                    control: {
+                        name: 'el-select',
+                        attrs: {
+                            placeholder: '活动区域',
+                            clearable: 'true'
+                        },
+                        model: 'region',
+                        option: [{
+                            value: 'shanghai',
+                            label: '区域一'
+                        }, {
+                            value: 'beijing',
+                            label: '区域二'
+                        }]
+                    }
+                }, {
+                    control: {
+                        name: '',
+                        model: 'name',
+                        value: '111'
+                    }
+                }, {
+                    control: {
+                        name: 'el-button',
+                        attrs: {
+                            type: 'primary'
+                        },
+                        on: {
+                            click: 'handleClick'
+                        },
+                        label: '查询'
+                    }
+                }]
             }
         },
         render: function(_c) {
             return _c('cust-form', {
                 attrs: {
-                    form: form
-                },
-                model: {
-                    value: (this.formInline),
-                    callback: function($$v) {
-                        this.formInline = $$v
-                    }
+                    form: this.form
                 }
             })
         }
