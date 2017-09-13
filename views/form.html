@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+    <div id='app'></div>
+</body>
+
+</html>
+<script src="../js/vue.min.js"></script>
+<script src="../js/index.js"></script>
+<script>
+    Vue.component('cust-form', {
+        props: {
+            value: {
+                type: Object
+            },
+            form: {
+                type: Object
+            }
+        },
+        render: function(_c) {
+            var _self = this;
+            return _c('el-form', {
+                attrs: _self.form.attrs,
+                model: {
+                    value: (_self.value),
+                    callback: function($$v) {
+                        _self.value = $$v
+                    }
+                },
+                staticClass: _self.form.class,
+                ref: _self.ref
+            }, [
+                _self._l(_self.form.formitem, function(item) {
+                    return _c('el-form-item', {
+                        attrs: item.attrs,
+                        staticClass: item.class,
+                        ref: item.ref
+                    }, [
+                        _self._l(item.control, function(_item) {
+                            //文本控件
+                            if (_item.name == 'el-input') {
+                                return _c(_item.name, {
+                                    attrs: _item.attrs,
+                                    model: {
+                                        value: (_self[_item.attrs.model]),
+                                        callback: function($$v) {
+                                            _self[_item.attrs.model] = $$v
+                                        }
+                                    },
+                                    staticClass: _item.class,
+                                    ref: _item.ref,
+                                    on: _item.on
+                                })
+                            }
+                            //下拉选择控件
+                            if (_item.name == 'el-select') {
+                                return _c(_item.name, {
+                                    attrs: _item.attrs,
+                                    model: {
+                                        value: (_self[_item.attrs.model]),
+                                        callback: function($$v) {
+                                            _self[_item.attrs.model] = $$v
+                                        }
+                                    },
+                                    staticClass: _item.class,
+                                    ref: _item.ref,
+                                    on: _item.on
+                                }, [
+                                    _self._l(_item.option, function(__item) {
+                                        return _c('el-option', {
+                                            attrs: {
+                                                label: __item.label,
+                                                value: __item.value
+                                            }
+                                        })
+                                    })
+                                ])
+                            }
+
+                        })
+                    ])
+                })
+            ])
+        }
+    })
+
+    var form = {
+        attrs: {
+            inline: true
+        },
+        model: 'formInline',
+        class: 'demo-form-inline',
+        ref: '',
+        formitem: [{
+            attrs: {
+                label: '审批人',
+                prop: 'user'
+            },
+            control: [{
+                name: 'el-input',
+                attrs: {
+                    placeholder: '审批人'
+                },
+                model: 'formInline.user',
+                on: {},
+                ref: ''
+            }]
+        }, {
+            attrs: {
+                label: '活动区域',
+                prop: 'region'
+            },
+            control: [{
+                name: 'el-select',
+                attrs: {
+                    model: 'formInline.region',
+                    placeholder: '活动区域'
+                },
+                model: '',
+                on: {},
+                ref: '',
+                url: '',
+                option: [{
+                    value: '1',
+                    label: '区域一'
+                }, {
+                    value: '2',
+                    label: '区域二'
+                }]
+            }]
+        }]
+    }
+    var _vm = new Vue({
+        el: '#app',
+        data: {
+            formInline: {
+                user: '',
+                region: ''
+            }
+        },
+        render: function(_c) {
+            return _c('cust-form', {
+                attrs: {
+                    form: form
+                },
+                model: {
+                    value: (this.formInline),
+                    callback: function($$v) {
+                        this.formInline = $$v
+                    }
+                }
+            })
+        }
+    })
+</script>
